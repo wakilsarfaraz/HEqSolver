@@ -1,2 +1,2 @@
 # HEqSolver
-This is a diffusion equation solver written in R
+HEqSolver is a Finite Element Solver written in R for solving the diffusion equation. HEqSolver employes piecewise linear basis functions on uniform triangulation. It solves the diffusion equation on a two dimensional rectangular domain with homogeneous boundary conditions of Dirichlet type. We illustrate HEqSolver through an example of the diffusion equation posed on a rectangular domain in which we present both the relevant theory of the finite element method a long with the time-stepping scheme. All this is illustrated through the presentation of the mathematical theory of the finite element method on an example, for which the solution is obtained by HEqSolver.  
