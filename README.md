@@ -59,3 +59,16 @@ The connectivity array `LocNodes` is a matrix that stores the global counting of
 ``` r
 LocNodes = matrix(0,NumTRI,3)
 ```
+Triangulation of the domain is obtained such that the vertices of each triangle is locally counted in anti-clockwise orientation and such that the local counting of vertices of each triangle fills the global connectivity array `LocNodes` in the correct order. Note that we must fill in `4+2=6` vertices for each square, because each square is divided into two triangles by a diagonal line, however, each triangle has one distinct but two shared vertices. Therefore, it can be noted that the first three lines inside the nested for loop correspond to the three vertices of all the lower triangles on each square and the latter three lines correspond to all the three vertices of all the upper triangles. The nested loop that distributes such order of counting within the connectivity array is given by 
+``` r
+for (i in 1:N){
+	for (j in 1:N){
+		    LocNodes[i+2*(j-1)*N,1] = i+(j-1)*(N+1)
+        LocNodes[i+2*(j-1)*N,2] = i+j*(N+1)
+        LocNodes[i+2*(j-1)*N,3] = (i+1)+(j-1)*(N+1)
+        LocNodes[i+N+2*(j-1)*N,1] = i+1+j*(N+1)
+        LocNodes[i+N+2*(j-1)*N,2] = (i+1)+(j-1)*(N+1)
+        LocNodes[i+N+2*(j-1)*N,3] = i+j*(N+1)
+    }
+}
+```
