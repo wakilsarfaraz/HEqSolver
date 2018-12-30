@@ -7,3 +7,15 @@ In order to solve the semi-discrete problem we introduce a uniform mesh of <img 
 Let <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/> be discretised by <img src="https://latex.codecogs.com/svg.latex?\Large&space;2N^2"/> uniform triangles connected through <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> nodes.  Let <img src="https://latex.codecogs.com/svg.latex?\Large&space;\mathcal{T}"/> denote the uniform triangulation of <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/>, consisting of all triangles. The algorithm is programmed to compute locally on each triangle <img src="https://latex.codecogs.com/svg.latex?\Large&space;K\in\mathcal{T}"/>, the entries of the mass and stiffness matrices namely <img src="https://latex.codecogs.com/svg.latex?\Large&space;M"/> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;S"/>. The entries of the global mass and stiffness matrices are computed by the local <img src="https://latex.codecogs.com/svg.latex?\Large&space;3\times3"/> mass and stiffness matrices namely  <img src="https://latex.codecogs.com/svg.latex?\Large&space;M"/> and  <img src="https://latex.codecogs.com/svg.latex?\Large&space;S"/>. The global mass and stiffness matrices are therefore, given by the formulea <img src="https://latex.codecogs.com/svg.latex?\Large&space;M_{i,j}=\sum_{K\in\mathcal{T}}\int_{K}\phi_i\phi_jdxdy"/> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;S_{i,j}=\sum_{K\in\mathcal{T}}\int_{K}\nabla\phi_i\cdot\nabla\phi_jdxdy"/> respectively. 
 ## Code documentation
 Recall the problem formulated in terms of <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,t)"/> satisfying the the diffusion equation <img src="https://latex.codecogs.com/svg.latex?\Large&space;\frac{\partial\,u}{\partial\,t}=\Delta\,u(x,y)"/> on <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega=(0\;1)\times(0\;1)"/>. It satisfies homogeneous Dirichlet type boundary conditions for all <img src="https://latex.codecogs.com/svg.latex?\Large&space;t\in(0\,\,\,1\]"/>, which is formally written as <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,t)=0,\;\,(x,y)\in\partial\Omega"/>. The initial conditions are prescribed such that <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,0)=1,\;\,(x,y)\in\Omega,\;\,t=0"/>.
+We start the code by introducing the necessary variables namely  
+``` r
+L = 1
+```
+denoting the side length of the two-dimensional square domain. Variables
+``` r
+tm = 1
+dt = 0.001
+M = tm/dt
+```
+represent the values for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,0)=1,\;T_{max}"/>, the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/> and the number of time points on the time interval, namely <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/>.
+
