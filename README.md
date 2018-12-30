@@ -20,4 +20,8 @@ store the values respectively for the final time <img src="https://latex.codecog
 ``` r
 M = tm/dt
 ```
+The number of spatial uniform mesh points that discretises `L` is stored by
+``` r
+N = 50
+```
 
