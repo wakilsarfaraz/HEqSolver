@@ -17,5 +17,5 @@ tm = 1
 dt = 0.001
 M = tm/dt
 ```
-represent the values for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/>, the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/> and the number of time points on the time interval, namely <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/>.
+stor the values respectively for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/>, the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/> and the number of time points on the time interval, namely <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/>.
 
