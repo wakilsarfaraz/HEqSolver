@@ -47,4 +47,8 @@ where `x` and `y` now store all the values for the x and y coordinates for all t
 ``` r
 GNodes = (N+1)^2
 ```
+We use `U` to store the approximate discrete solution values at each time step and we define the initial state of `U` to be a vector of constant values of 1 at each note in the domain and this is achieved by 
+``` r
+U = matrix(1, GNodes, 1)
+```
 
