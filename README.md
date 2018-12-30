@@ -55,7 +55,7 @@ Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally 
 ``` r
 NumTRI = 2*N^2
 ```
-The connectivity array is a matrix that stores the global counting of all the nodes in a specific structure in the sense that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
+The connectivity array `LocNodes` is a matrix that stores the global counting of all the nodes with a local structure in the sense that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
 ``` r
 LocNodes = matrix(0,NumTRI,3)
 ```
