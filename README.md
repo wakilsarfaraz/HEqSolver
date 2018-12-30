@@ -32,4 +32,10 @@ similarly the time interval is also uniformly discretised by `M+1` points using
 ``` r
 T = seq(0,tm,len=M+1)
 ```
+The next step is to compute and store the matrices containing the values for the two dimensional spatial coordinates of such discretisation, which is achieved by 
+``` r
+m = length(X); n=length(X);
+x = matrix(rep(X,each=n),nrow=n);
+y = matrix(rep(X,m),nrow=n)
+```
 
