@@ -24,11 +24,11 @@ The number of spatial uniform mesh points that discretises `L` is stored by
 ``` r
 N = 50
 ```
-The side length `L` is discretised by `N+1` points using   
+The side length `L` is discretised by `N+1` equally spaced points using   
 ``` r
 X = seq(0,L,len=N+1)
 ```
-similarly the time interval is discretised by `M+1` points using
+similarly the time interval is also uniformly discretised by `M+1` points using
 ``` r
 T = seq(0,tm,len=M+1)
 ```
