@@ -11,7 +11,7 @@ We start the code by introducing the necessary variables namely
 ``` r
 L = 1
 ```
-denoting the side length of the two-dimensional square domain. Variables
+storing the value for the side length of the two-dimensional square domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/>. Variables
 ``` r
 tm = 1
 dt = 0.001
