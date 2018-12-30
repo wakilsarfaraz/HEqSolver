@@ -38,4 +38,10 @@ m = length(X); n=length(X);
 x = matrix(rep(X,each=n),nrow=n);
 y = matrix(rep(X,m),nrow=n)
 ```
+We need to reshape the data structure of the spatial coordinates into a vector and this is achieved by 
+``` r
+x = c(x)
+y = c(y)
+```
+where `x` and `y` now store all the values for the x and y coordinates each as a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries.
 
