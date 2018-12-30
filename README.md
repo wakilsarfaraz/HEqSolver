@@ -51,4 +51,11 @@ We use `U` to store the approximate discrete solution values at each time step a
 ``` r
 U = matrix(1, GNodes, 1)
 ```
-
+Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally through each square leads to the construction of a uniform triangulated domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/>, which consists of `NumTRI` triangles, which is defined in terms of `N` by
+``` r
+NumTRI = 2*N^2
+```
+The connectivity array is a matrix that stores the global counting of all the nodes in a specific structure in the sense that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
+``` r
+LocNodes = matrix(0,NumTRI,3)
+```
