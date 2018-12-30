@@ -43,5 +43,8 @@ We need to reshape the data structure of the spatial coordinates into a vector a
 x = c(x)
 y = c(y)
 ```
-where `x` and `y` now store all the values for the x and y coordinates each as a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries.
+where `x` and `y` now store all the values for the x and y coordinates each as a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries. We store the number of global nodes in the discretised domain by 
+``` r
+GNodes = (N+1)^2
+```
 
