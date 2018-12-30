@@ -15,7 +15,9 @@ storing the value for the side length of the two-dimensional square domain <img 
 ``` r
 tm = 1
 dt = 0.001
+```
+store the values respectively for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/> and the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/>. The number of time points <img src="https://latex.codecogs.com/svg.latex?\Large&space;T"/> on the time interval <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/> are stored by
+``` r
 M = tm/dt
 ```
-store the values respectively for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/>, the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Deltat"/> and the number of time points on the time interval, namely <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/>.
 
