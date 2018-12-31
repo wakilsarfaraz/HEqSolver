@@ -7,7 +7,7 @@ In order to solve the semi-discrete problem we introduce a uniform mesh of <img 
 Let <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/> be discretised by <img src="https://latex.codecogs.com/svg.latex?\Large&space;2N^2"/> uniform triangles connected through <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> nodes.  Let <img src="https://latex.codecogs.com/svg.latex?\Large&space;\mathcal{T}"/> denote the uniform triangulation of <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/>, consisting of all triangles. The algorithm is programmed to compute locally on each triangle <img src="https://latex.codecogs.com/svg.latex?\Large&space;K\in\mathcal{T}"/>, the entries of the mass and stiffness matrices namely <img src="https://latex.codecogs.com/svg.latex?\Large&space;M"/> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;S"/>. The entries of the global mass and stiffness matrices are computed by the local <img src="https://latex.codecogs.com/svg.latex?\Large&space;3\times3"/> mass and stiffness matrices namely  <img src="https://latex.codecogs.com/svg.latex?\Large&space;M"/> and  <img src="https://latex.codecogs.com/svg.latex?\Large&space;S"/>. The global mass and stiffness matrices are therefore, given by the formulea <img src="https://latex.codecogs.com/svg.latex?\Large&space;M_{i,j}=\sum_{K\in\mathcal{T}}\int_{K}\phi_i\phi_jdxdy"/> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;S_{i,j}=\sum_{K\in\mathcal{T}}\int_{K}\nabla\phi_i\cdot\nabla\phi_jdxdy"/> respectively. 
 ## Code documentation
 Recall the problem formulated in terms of <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,t)"/> satisfying the the diffusion equation <img src="https://latex.codecogs.com/svg.latex?\Large&space;\frac{\partial\,u}{\partial\,t}=\Delta\,u(x,y)"/> on <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega=(0\;1)\times(0\;1)"/>. It satisfies homogeneous Dirichlet type boundary conditions for all <img src="https://latex.codecogs.com/svg.latex?\Large&space;t\in(0\,\,\,1\]"/>, which is formally written as <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,t)=0,\;\,(x,y)\in\partial\Omega"/>. The initial conditions are prescribed such that <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,0)=1,\;\,(x,y)\in\Omega,\;\,t=0"/>.
-We start the code by introducing the necessary variables:
+We present the code in the form of a serie of enumerated documentations for each block of code:
 
 1. Variable
 ``` r
@@ -24,7 +24,7 @@ store the values respectively for the final time <img src="https://latex.codecog
 
 3. The number of time points <img src="https://latex.codecogs.com/svg.latex?\Large&space;T"/> on the time interval <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/> are stored by
 ``` r
-M = tm/dt                                                                                            .
+M = tm/dt                                                                                            
 ```
 
 4. The number of spatial uniform mesh points that discretises `L` is stored by
@@ -60,20 +60,23 @@ where `x` and `y` now store all the values for the x and y coordinates for all t
 ``` r
 GNodes = (N+1)^2
 ```
-We use `U` to store the approximate discrete solution values at each time step and we define the initial state of `U` to be a vector of constant values of 1 at each note in the domain and this is achieved by 
+
+10. We use `U` to store the approximate discrete solution values at each time step and we define the initial state of `U` to be a vector of constant values of 1 at each note in the domain and this is achieved by 
 ``` r
 U = matrix(1, GNodes, 1)
 ```
-Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally through each square leads to the construction of a uniform triangulated domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/>, which consists of `NumTRI` triangles, which is defined in terms of `N` by
+
+11. Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally through each square leads to the construction of a uniform triangulated domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/>, which consists of `NumTRI` triangles, which is defined in terms of `N` by
 ``` r
 NumTRI = 2*N^2
 ```
-The connectivity array `LocNodes` is a matrix that stores the global counting of all the nodes with a local structure in the sense that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
+
+12. The connectivity array `LocNodes` is a matrix that stores the global counting of all the nodes with a local structure in the sense that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
 ``` r
 LocNodes = matrix(0,NumTRI,3)
 ``` 
-.
-Triangulation of the domain is obtained such that the vertices of each triangle is locally counted in anti-clockwise orientation and such that the local counting of vertices of each triangle fills the global connectivity array `LocNodes` in the correct order. Note that we must fill in `4+2=6` vertices for each square, because each square is divided into two triangles by a diagonal line, however, each triangle has one distinct but two shared vertices. Therefore, it can be noted that the first three lines inside the nested for loop correspond to the three vertices of all the lower triangles on each square and the latter three lines correspond to all the three vertices of all the upper triangles. The nested loop that distributes such order of counting within the connectivity array is given by 
+
+13. Triangulation of the domain is obtained such that the vertices of each triangle is locally counted in anti-clockwise orientation and such that the local counting of vertices of each triangle fills the global connectivity array `LocNodes` in the correct order. Note that we must fill in `4+2=6` vertices for each square, because each square is divided into two triangles by a diagonal line, however, each triangle has one distinct but two shared vertices. Therefore, it can be noted that the first three lines inside the nested for loop correspond to the three vertices of all the lower triangles on each square and the latter three lines correspond to all the three vertices of all the upper triangles. The nested loop that distributes such order of counting within the connectivity array is given by 
 ``` r
 for (i in 1:N){
 	for (j in 1:N){
@@ -86,3 +89,5 @@ for (i in 1:N){
     }
 }
 ```
+
+14. 
