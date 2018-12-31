@@ -10,10 +10,10 @@ Recall the problem formulated in terms of <img src="https://latex.codecogs.com/s
 We present the code in the form of a serie of enumerated documentations for each block of code:
 
 1. Variable
-``` r
-L = 1
-```
-stores the value for the side length of the two-dimensional square domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/>.
+	``` r
+	L = 1
+	```
+	stores the value for the side length of the two-dimensional square domain <img src="https://latex.codecogs.com/svg.latex?		\Large&space;\Omega"/>.
 
 2. Variables
 ``` r
