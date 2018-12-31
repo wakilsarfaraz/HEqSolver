@@ -8,45 +8,55 @@ Let <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/> be dis
 ## Code documentation
 Recall the problem formulated in terms of <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,t)"/> satisfying the the diffusion equation <img src="https://latex.codecogs.com/svg.latex?\Large&space;\frac{\partial\,u}{\partial\,t}=\Delta\,u(x,y)"/> on <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega=(0\;1)\times(0\;1)"/>. It satisfies homogeneous Dirichlet type boundary conditions for all <img src="https://latex.codecogs.com/svg.latex?\Large&space;t\in(0\,\,\,1\]"/>, which is formally written as <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,t)=0,\;\,(x,y)\in\partial\Omega"/>. The initial conditions are prescribed such that <img src="https://latex.codecogs.com/svg.latex?\Large&space;u(x,y,0)=1,\;\,(x,y)\in\Omega,\;\,t=0"/>.
 We start the code by introducing the necessary variables:
-1 Variable
+
+1. Variable
 ``` r
 L = 1
 ```
 stores the value for the side length of the two-dimensional square domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/>.
-2 Variables
+
+2. Variables
 ``` r
 tm = 1
 dt = 0.001
 ```
 store the values respectively for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/> and the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/>. 
-3 The number of time points <img src="https://latex.codecogs.com/svg.latex?\Large&space;T"/> on the time interval <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/> are stored by
+
+3. The number of time points <img src="https://latex.codecogs.com/svg.latex?\Large&space;T"/> on the time interval <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/> are stored by
 ``` r
 M = tm/dt                                                                                            .
 ```
-The number of spatial uniform mesh points that discretises `L` is stored by
+
+4. The number of spatial uniform mesh points that discretises `L` is stored by
 ``` r
 N = 50
 ```
-The side length `L` is discretised by `N+1` equally spaced points using   
+
+5. The side length `L` is discretised by `N+1` equally spaced points using   
 ``` r
 X = seq(0,L,len=N+1)
 ```
-similarly the time interval is also uniformly discretised by `M+1` points using
+
+6. The time interval is also uniformly discretised by `M+1` points using
 ``` r
 T = seq(0,tm,len=M+1)
 ```
-The next step is to compute and store the matrices containing the values for the two dimensional spatial coordinates of such discretisation, which is achieved by 
+
+7. This step is to compute and store the matrices containing the values for the two dimensional spatial coordinates of such discretisation, which is achieved by 
 ``` r
 m = length(X); n=length(X);
 x = matrix(rep(X,each=n),nrow=n);
 y = matrix(rep(X,m),nrow=n)
 ```
-We need to reshape the data structure of the spatial coordinates into a vector and this is achieved by 
+
+8. We need to reshape the data structure of the spatial coordinates into a vector and this is achieved by 
 ``` r
 x = c(x)
 y = c(y)
 ```
-where `x` and `y` now store all the values for the x and y coordinates for all the global nodes, therefore, each one is now a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries. We store the number of global nodes in the discretised domain by 
+where `x` and `y` now store all the values for the x and y coordinates for all the global nodes, therefore, each one is now a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries. 
+
+9. We store the number of global nodes in the discretised domain by 
 ``` r
 GNodes = (N+1)^2
 ```
