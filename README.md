@@ -95,6 +95,21 @@ We present the code in the form of a serie of enumerated documentations for each
 	SP_Stiff <- matrix(0, GNodes, GNodes)
 	SP_Mass <- matrix(0, GNodes, GNodes)
 	```
-15. The Jacobian of the mapping namely `J` serves to reduce the computational cost by a significant amount, particularly due to a property 	of integration for computing the integral of a function on a reference domain with a given mapping between  the arbitrary domain and 	the reference domain. Further details on this topic can be found on [Integral domain transformation](http://www.iue.tuwien.ac.at/phd/nentchev/node58.html). 
+15. The next segment of code is a for loop that executes a series of computations on each one of the triangles. It starts with 
+	``` r
+	for (n in 1:NumTRI)
+		{# This is the start of the for loop on all triangles
+	```
+16. The first part within the loop defines the local position vectors `r1`, `r2`, and `r3` in terms of `x` and `y` coordinate values 		through which we refer to different vertices of each triangle. 
+	``` r
+	r1 = matrix(c(x[LocNodes[n,1]],y[LocNodes[n,1]]),nrow=2, byrow=FALSE)
+	r2 = matrix(c(x[LocNodes[n,2]],y[LocNodes[n,2]]),nrow=2, byrow=FALSE);
+	r3 = matrix(c(x[LocNodes[n,3]],y[LocNodes[n,3]]),nrow=2, byrow=FALSE);
+	```
+17. The second part within the loop defines a <img src="https://latex.codecogs.com/svg.latex?\Large&space;2\times2"/> jacobian matrix `J` 	for the mapping from an arbitrary triangle in <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/> to a reference 	triangle that has vertices in order <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0,0),\!(1,0)"/> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0,1)"/>.
+	``` r
+	J = matrix(c(r2[1]-r1[1],r2[2]-r1[2]
+	    ,r3[1]-r1[1],r3[2]-r1[2]), nrow=2, byrow=TRUE) 
+	```
 
 	
