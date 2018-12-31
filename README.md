@@ -90,4 +90,11 @@ We present the code in the form of a serie of enumerated documentations for each
 	}
 	```
 
-14. 
+14. Introduce the global stiffness and mass matrices filled with zeros each of size `GNodes x GNodes`  
+	``` r
+	SP_Stiff <- matrix(0, GNodes, GNodes)
+	SP_Mass <- matrix(0, GNodes, GNodes)
+	```
+15. The Jacobian of the mapping namely `J` serves to reduce the computational cost by a significant amount, particularly due to a property 	of integration for computing the integral of a function on a reference domain with a given mapping between  the arbitrary domain and 	the reference domain. Further details on this topic can be found on [Integral domain transformation](http://www.iue.tuwien.ac.at/phd/nentchev/node58.html). 
+
+	
