@@ -17,44 +17,44 @@ We present the code in the form of a serie of enumerated documentations for each
 
 2. Variables
 	``` r
-tm = 1
-dt = 0.001
-```
-store the values respectively for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/> and the time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/>. 
+	tm = 1
+	dt = 0.001
+	```
+	store the values respectively for the final time <img src="https://latex.codecogs.com/svg.latex?\Large&space;T_{max}"/> and the 	time step-size <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Delta\,t"/>. 
 
 3. The number of time points <img src="https://latex.codecogs.com/svg.latex?\Large&space;T"/> on the time interval <img src="https://latex.codecogs.com/svg.latex?\Large&space;(0\;1\]"/> are stored by
-``` r
-M = tm/dt                                                                                            
-```
+	``` r
+	M = tm/dt                                                                                            
+	```
 
 4. The number of spatial uniform mesh points that discretises `L` is stored by
-``` r
-N = 50
-```
+	``` r
+	N = 50
+	```
 
 5. The side length `L` is discretised by `N+1` equally spaced points using   
-``` r
-X = seq(0,L,len=N+1)
-```
+	``` r
+	X = seq(0,L,len=N+1)
+	```
 
 6. The time interval is also uniformly discretised by `M+1` points using
-``` r
-T = seq(0,tm,len=M+1)
-```
+	``` r
+	T = seq(0,tm,len=M+1)
+	```
 
-7. This step is to compute and store the matrices containing the values for the two dimensional spatial coordinates of such discretisation, which is achieved by 
-``` r
-m = length(X); n=length(X);
-x = matrix(rep(X,each=n),nrow=n);
-y = matrix(rep(X,m),nrow=n)
-```
+7. This step is to compute and store the matrices containing the values for the two dimensional spatial coordinates of such 			discretisation, which is achieved by 
+	``` r
+	m = length(X); n=length(X);
+	x = matrix(rep(X,each=n),nrow=n);
+	y = matrix(rep(X,m),nrow=n)
+	```
 
 8. Reshape the data structure of the spatial coordinates from matrices into vector by 
-``` r
-x = c(x)
-y = c(y)
-```
-where `x` and `y` now store all the values for the x and y coordinates for all the global nodes, therefore, each one is now a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries. 
+	``` r
+	x = c(x)
+	y = c(y)
+	```
+	where `x` and `y` now store all the values for the x and y coordinates for all the global nodes, therefore, each one is now a 		vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries. 
 
 9. Store the number of global nodes in the discretised domain by 
 	``` r
@@ -66,28 +66,28 @@ where `x` and `y` now store all the values for the x and y coordinates for all t
 	U = matrix(1, GNodes, 1)
 	```
 
-11. Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally through each square leads to the construction of a uniform triangulated domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/>, which consists of `NumTRI` triangles, which is defined in terms of `N` by
-``` r
-NumTRI = 2*N^2
-```
+11. Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally through each square leads to the construction of a 		uniform triangulated domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/>, which consists of `NumTRI` 	triangles, which is defined in terms of `N` by
+	``` r
+	NumTRI = 2*N^2
+	```
 
-12. The connectivity array `LocNodes` is a matrix that stores the global counting of all the nodes with a local structure in the sense that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
-``` r
-LocNodes = matrix(0,NumTRI,3)
-``` 
+12. The connectivity array `LocNodes` is a matrix that stores the global counting of all the nodes with a local structure in the sense 		that it must have `NumTRI` rows and three columns for each vertix of each triangle. The code to achieve this is
+	``` r
+	LocNodes = matrix(0,NumTRI,3)
+	``` 
 
-13. Triangulation of the domain is obtained such that the vertices of each triangle is locally counted in anti-clockwise orientation and such that the local counting of vertices of each triangle fills the global connectivity array `LocNodes` in the correct order. Note that we must fill in `4+2=6` vertices for each square, because each square is divided into two triangles by a diagonal line, however, each triangle has one distinct but two shared vertices. Therefore, it can be noted that the first three lines inside the nested for loop correspond to the three vertices of all the lower triangles on each square and the latter three lines correspond to all the three vertices of all the upper triangles. The nested loop that distributes such order of counting within the connectivity array is given by 
-``` r
-for (i in 1:N){
-	for (j in 1:N){
-		    LocNodes[i+2*(j-1)*N,1] = i+(j-1)*(N+1)
-        LocNodes[i+2*(j-1)*N,2] = i+j*(N+1)
-        LocNodes[i+2*(j-1)*N,3] = (i+1)+(j-1)*(N+1)
-        LocNodes[i+N+2*(j-1)*N,1] = i+1+j*(N+1)
-        LocNodes[i+N+2*(j-1)*N,2] = (i+1)+(j-1)*(N+1)
-        LocNodes[i+N+2*(j-1)*N,3] = i+j*(N+1)
-    }
-}
-```
+13. Triangulation of the domain is obtained such that the vertices of each triangle is locally counted in anti-clockwise orientation and 	such that the local counting of vertices of each triangle fills the global connectivity array `LocNodes` in the correct order. Note 	that we must fill in `4+2=6` vertices for each square, because each square is divided into two triangles by a diagonal line, however, 	each triangle has one distinct but two shared vertices. Therefore, it can be noted that the first three lines inside the nested for loop 	correspond to the three vertices of all the lower triangles on each square and the latter three lines correspond to all the three 	vertices of all the upper triangles. The nested loop that distributes such order of counting within the connectivity array is given 	by 
+	``` r
+	for (i in 1:N){
+		for (j in 1:N){
+			    LocNodes[i+2*(j-1)*N,1] = i+(j-1)*(N+1)
+	        LocNodes[i+2*(j-1)*N,2] = i+j*(N+1)
+	        LocNodes[i+2*(j-1)*N,3] = (i+1)+(j-1)*(N+1)
+	        LocNodes[i+N+2*(j-1)*N,1] = i+1+j*(N+1)
+	        LocNodes[i+N+2*(j-1)*N,2] = (i+1)+(j-1)*(N+1)
+	        LocNodes[i+N+2*(j-1)*N,3] = i+j*(N+1)
+	    }
+	}
+	```
 
 14. 
