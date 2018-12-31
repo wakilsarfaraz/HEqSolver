@@ -13,10 +13,10 @@ We present the code in the form of a serie of enumerated documentations for each
 	``` r
 	L = 1
 	```
-	stores the value for the side length of the two-dimensional square domain <img src="https://latex.codecogs.com/svg.latex?		\Large&space;\Omega"/>.
+	stores the value for the side length of the two-dimensional square domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega"/>.
 
 2. Variables
-``` r
+	``` r
 tm = 1
 dt = 0.001
 ```
