@@ -49,22 +49,22 @@ x = matrix(rep(X,each=n),nrow=n);
 y = matrix(rep(X,m),nrow=n)
 ```
 
-8. We need to reshape the data structure of the spatial coordinates into a vector and this is achieved by 
+8. Reshape the data structure of the spatial coordinates from matrices into vector by 
 ``` r
 x = c(x)
 y = c(y)
 ```
 where `x` and `y` now store all the values for the x and y coordinates for all the global nodes, therefore, each one is now a vector of <img src="https://latex.codecogs.com/svg.latex?\Large&space;(N+1)^2"/> entries. 
 
-9. We store the number of global nodes in the discretised domain by 
-``` r
-GNodes = (N+1)^2
-```
+9. Store the number of global nodes in the discretised domain by 
+	``` r
+	GNodes = (N+1)^2
+	```
 
-10. We use `U` to store the approximate discrete solution values at each time step and we define the initial state of `U` to be a vector of constant values of 1 at each note in the domain and this is achieved by 
-``` r
-U = matrix(1, GNodes, 1)
-```
+10. Use `U` to store the approximate discrete solution values at each time step and we define the initial state of `U` to be a vector of   	constant values of 1 at each note in the domain and this is achieved by 
+	``` r
+	U = matrix(1, GNodes, 1)
+	```
 
 11. Triangulation of a quadrilateral mesh by drawing a line of slope -1 diangonally through each square leads to the construction of a uniform triangulated domain <img src="https://latex.codecogs.com/svg.latex?\Large&space;\Omega^h"/>, which consists of `NumTRI` triangles, which is defined in terms of `N` by
 ``` r
