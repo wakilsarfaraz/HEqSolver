@@ -113,4 +113,8 @@ We present the code in the form of a serie of enumerated documentations for each
 	```
 	The Jacobian of the mapping namely `J` serves to reduce the computational cost by a significant amount, particularly due to a 		property of integration for computing the integral of a function on a reference domain with a given mapping between  the arbitrary 	domain and the reference domain. Further details on this topic can be found on [Integral domain transformation](http://www.iue.tuwien.ac.at/phd/nentchev/node58.html). 
 
+Here is the animated solution of the diffusion equation <a href="https://www.youtube.com/watch?v=ucI6KfxeZ7E
+"target="_blank"><img src="https://www.youtube.com/watch?v=ucI6KfxeZ7E" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>.
+
 	
