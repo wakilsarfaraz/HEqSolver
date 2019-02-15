@@ -117,4 +117,6 @@ Here is the animated solution of the diffusion equation <a href="https://www.you
 "target="_blank"><img src="https://www.youtube.com/watch?v=ucI6KfxeZ7E" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>.
 
+...work in progress...
+
 	
